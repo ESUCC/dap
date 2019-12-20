@@ -1,0 +1,12 @@
+dap-web:
+  image: nginx:1.17
+  ports:
+    - "80:80"
+    - "443:443"
+  volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf
+    - ./ssl:/etc/ssl
+    - ./public:/usr/share/nginx/html
+    - /var/log/docker/dap/dap-error.log:/var/log/nginx/error.log
+    - /var/log/docker/dap/dap-access.log:/var/log/nginx/host.access.log
+  command: [nginx, '-g', 'daemon off;']
